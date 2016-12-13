@@ -36,7 +36,7 @@ identicon.write 'sample_ip.svg'
 identicon = Quilt::Identicon.new 'sample'
 print identicon.to_blob
 
-# output: tranparent background
-identicon = Quilt::Identicon.new 'sample', transparent: true
-identicon.write 'sample_transparent.svg'
+# output: custom foreground
+identicon = Quilt::Identicon.new 'sample', color: 'red'
+identicon.write 'sample_red.svg'
 ```

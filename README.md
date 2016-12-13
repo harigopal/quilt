@@ -14,7 +14,11 @@ See `CHANGELOG.md`
 
 ## Installation
 
-    gem install quilt
+Add to Gemfile:
+
+```ruby
+gem 'quilt', git: 'https://github.com/harigopal/quilt.git'
+```
 
 ## Example
 

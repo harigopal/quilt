@@ -1,5 +1,3 @@
-source "http://rubygems.org"
+source 'https://rubygems.org'
+
 gemspec
-group :development do
-  gem 'ruby-gd', :github => 'Spakman/ruby-gd'
-end

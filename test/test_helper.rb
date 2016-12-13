@@ -1,3 +1,5 @@
 require 'test/unit'
-require File.dirname(__FILE__) + '/../lib/quilt'
+require 'digest/md5'
+require 'fileutils'
 
+require_relative '../lib/quilt'

@@ -1,37 +1,16 @@
-# -*- encoding: utf-8 -*-
-
 Gem::Specification.new do |s|
-  s.name = "quilt"
-  s.version = "0.1.0"
-
-  s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["swdyh"]
-  s.date = "2014-11-08"
-  s.description = "A Ruby library for generating identicon.\nhttps://github.com/swdyh/quilt"
-  s.email = "youhei@gmail.com"
-  s.files = [".travis.yml", "ChangeLog", "Gemfile", "MIT-LICENSE", "README.md", "Rakefile", "lib/quilt.rb", "quilt.gemspec", "test/quilt_test.rb", "test/test_helper.rb"]
-  s.homepage = "https://github.com/swdyh/quilt"
-  s.licenses = ["MIT"]
-  s.require_paths = ["lib"]
-  s.rubygems_version = "2.0.2"
-  s.summary = "A Ruby library for generating identicon."
-  s.test_files = ["test/test_helper.rb"]
-
-  if s.respond_to? :specification_version then
-    s.specification_version = 4
-
-    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_development_dependency(%q<bundler>, [">= 0"])
-      s.add_development_dependency(%q<rake>, [">= 0"])
-      s.add_development_dependency(%q<rmagick>, [">= 0"])
-    else
-      s.add_dependency(%q<bundler>, [">= 0"])
-      s.add_dependency(%q<rake>, [">= 0"])
-      s.add_dependency(%q<rmagick>, [">= 0"])
-    end
-  else
-    s.add_dependency(%q<bundler>, [">= 0"])
-    s.add_dependency(%q<rake>, [">= 0"])
-    s.add_dependency(%q<rmagick>, [">= 0"])
-  end
+  s.name = 'quilt'
+  s.version = '0.1.0'
+  s.licenses = ['MIT']
+  s.summary = 'A Ruby library for generating identicons.'
+  s.description = "A Ruby library for generating identicons, forked from swdyh/quilt\nhttps://github.com/harigopal/quilt"
+  s.authors = %w(swdyh harigopal)
+  s.email = 'mail@harigopal.in'
+  s.files = %w(lib/quilt.rb)
+  s.homepage = 'https://github.com/harigopal/quilt'
+  s.require_paths = ['lib']
+  s.test_files = ['test/test_helper.rb']
+  s.required_ruby_version = '>= 2.3.0'
+  s.add_development_dependency 'rake'
+  s.add_development_dependency 'test-unit'
 end

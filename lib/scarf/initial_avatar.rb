@@ -10,8 +10,8 @@ module Scarf
     def svg
       <<~WRAPPER.gsub(/$\s+/, '').strip
         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100">
-          <circle cx="50" cy="50" r="50" fill="#{fill}" />
-          <text fill="#FFFFFF" font-size="50" font-family="#{font_family}" x="50" y="50" text-anchor="middle" alignment-baseline="central">#{initials}</text>
+          <circle cx="50" cy="50" r="50" fill="#{background_fill}" />
+          <text fill="#{foreground_fill}" font-size="50" font-family="#{font_family}" x="50" y="50" text-anchor="middle" alignment-baseline="central">#{initials}</text>
         </svg>
       WRAPPER
     end
@@ -32,9 +32,21 @@ module Scarf
       end
     end
 
-    # TODO: Need to add a hashing logic to ensure a supplied name always returns the same colour.
-    def fill
-      BACKGROUND.sample
+    # Returns a deterministic background fill for a given name.
+    def background_fill
+      @background_fill ||= begin
+        digest = "0.#{Digest::MD5.hexdigest(@name).to_i(16).to_s}".to_f
+        index = (digest * (BACKGROUND.length - 1)).round
+        BACKGROUND[index]
+      end
+    end
+
+    # Returns either black or white, optimizing contrast against background color.
+    def foreground_fill
+      red = background_fill[1..2].to_i(16)
+      green = background_fill[3..4].to_i(16)
+      blue = background_fill[5..6].to_i(16)
+      (red * 0.299 + green * 0.587 + blue * 0.114) > 186 ? '#000000' : '#FFFFFF'
     end
 
     # Upcase first letter of up to first two segments of the supplied name.

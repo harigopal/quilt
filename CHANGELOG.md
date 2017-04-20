@@ -1,4 +1,9 @@
-## 2017-04-19
+## 2017-04-20 (v0.2.1)
+
+- Make background colour for initial avatars deterministic.
+- Use either black or white as foreground colour for initial avatars to optimize contrast.
+
+## 2017-04-19 (v0.2.0)
 
 - Rebranding to `scarf` for release.
 - Adding support for generating initial avatars.

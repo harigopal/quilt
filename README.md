@@ -58,7 +58,6 @@ identicon.write 'sample_red.svg'
 ## TODO
 
 - Add a configure block to set default value for `font_family`
-- Implement a hashing logic to ensure initial avatar for a given name outputs the same background colour.
 
 ## Updates
 

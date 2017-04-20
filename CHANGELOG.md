@@ -1,3 +1,8 @@
+## 2017-04-19
+
+- Rebranding to `scarf` for release.
+- Adding support for generating initial avatars.
+
 ## 2016-12-13
 
 - Removing all image generators except SVG.

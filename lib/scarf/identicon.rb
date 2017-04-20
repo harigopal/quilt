@@ -1,4 +1,4 @@
-module Quilt
+module Scarf
   class Identicon
     PATCHES = [
       [0, 4, 24, 20, 0],
@@ -103,7 +103,7 @@ module Quilt
         fore, back = @fore_color, @back_color
       end
 
-      offset = (@image_lib == Quilt::ImageSVG) ? 0 : 1
+      offset = (@image_lib == Scarf::ImageSVG) ? 0 : 1
 
       if !(@transparent && back == @back_color)
         @image.fill_rect(x, y, x + @patch_width - offset,

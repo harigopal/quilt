@@ -1,6 +1,6 @@
 require_relative 'test_helper'
 
-class QuiltTest < Test::Unit::TestCase
+class ScarfTest < Test::Unit::TestCase
   def setup
     @tmp_dir = File.join 'test', 'tmp'
 
@@ -16,8 +16,8 @@ class QuiltTest < Test::Unit::TestCase
   end
 
   def test_identicon
-    identicon = Quilt::Identicon.new
-    assert_instance_of Quilt::Identicon, identicon
+    identicon = Scarf::Identicon.new
+    assert_instance_of Scarf::Identicon, identicon
     path = File.join 'test', 'tmp', 'test'
     identicon.write path
     assert File.exist?(path)
@@ -25,7 +25,7 @@ class QuiltTest < Test::Unit::TestCase
   end
 
   def test_to_blob
-    identicon = Quilt::Identicon.new
+    identicon = Scarf::Identicon.new
     path_b = File.join 'test', 'tmp', 'test_to_blob.png'
     path_w = File.join 'test', 'tmp', 'test_write.png'
 
@@ -40,7 +40,7 @@ class QuiltTest < Test::Unit::TestCase
 
   def test_size_opt
     size = 100
-    identicon = Quilt::Identicon.new 'foo', :size => size
+    identicon = Scarf::Identicon.new 'foo', :size => size
     assert_include identicon.instance_variable_get(:@image).instance_variable_get(:@head), 'viewBox="0 0 100.0 100.0"'
   end
 end

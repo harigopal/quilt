@@ -1,4 +1,4 @@
-module Quilt
+module Scarf
   class ImageSVG
     def initialize(width, height, opt = {})
       @transparent = !!opt[:transparent]

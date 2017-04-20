@@ -2,4 +2,4 @@ require 'test/unit'
 require 'digest/md5'
 require 'fileutils'
 
-require_relative '../lib/quilt'
+require_relative '../lib/scarf'

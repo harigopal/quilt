@@ -1,46 +1,62 @@
-# quilt
+# Scarf
 
-![sample02](http://swdyh.github.io/quilt/sample/quilt-02.png) ![sample03](http://swdyh.github.io/quilt/sample/quilt-03.png) ![sample04](http://swdyh.github.io/quilt/sample/quilt-04.png) ![sample05](http://swdyh.github.io/quilt/sample/quilt-05.png)
+![sample](http://harigopal.github.io/scarf/sample.png)
 
-[![Build Status](https://travis-ci.org/harigopal/quilt.png?branch=master)](https://travis-ci.org/harigopal/quilt)
-
-A Ruby library for generating identicons.
+A Ruby library for generating initial avatars and identicons.
 
 Identicon: http://en.wikipedia.org/wiki/Identicon
 
-## Updates
-
-See `CHANGELOG.md`
+This library was forked from [swdyh/quilt](https://github.com/swdyh/quilt), trimmed, updated, and then expanded upon.
 
 ## Installation
 
 Add to Gemfile:
 
 ```ruby
-gem 'quilt', git: 'https://github.com/harigopal/quilt.git'
+gem 'scarf', '~> 0.2'
 ```
 
-## Example
+## Initial Avatar
 
 ```ruby
-# input: any string
-# output: 15 * 15 png (default)
-identicon = Quilt::Identicon.new 'sample'
+# Output: Raw SVG
+initial_avatar = Scarf::InitialAvatar.new('Hello World')
+initial_avatar.svg
+
+# Customize the font - defaults to sans-serif
+Scarf::InitialAvatar.new('Jane Doe', font_family: ['Source Sans Pro']).svg
+```
+
+## Identicon
+
+```ruby
+# Input: any string
+# Output: SVG as file
+identicon = Scarf::Identicon.new 'sample'
 identicon.write 'sample.svg'
 
-# input: identicon code (32 bit integer)
-identicon = Quilt::Identicon.new 1, type: :code
+# Input: Identicon code (32 bit integer)
+identicon = Scarf::Identicon.new 1, type: :code
 identicon.write 'sample.svg'
 
-# input: ip address
-identicon = Quilt::Identicon.new '100.100.100.100', type: :ip
+# Input: IP address
+identicon = Scarf::Identicon.new '100.100.100.100', type: :ip
 identicon.write 'sample_ip.svg'
 
-# output: blob
-identicon = Quilt::Identicon.new 'sample'
+# Output: Raw SVG
+identicon = Scarf::Identicon.new 'sample'
 print identicon.to_blob
 
-# output: custom foreground
-identicon = Quilt::Identicon.new 'sample', color: 'red'
+# Set custom foreground color
+identicon = Scarf::Identicon.new 'sample', color: 'red'
 identicon.write 'sample_red.svg'
 ```
+
+## TODO
+
+- Add a configure block to set default value for `font_family`
+- Implement a hashing logic to ensure initial avatar for a given name outputs the same background colour.
+
+## Updates
+
+See `CHANGELOG.md`

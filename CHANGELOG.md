@@ -1,3 +1,7 @@
+## 2017-04-20 (v0.2.2)
+
+- Allow font family to be configured at class level.
+
 ## 2017-04-20 (v0.2.1)
 
 - Make background colour for initial avatars deterministic.

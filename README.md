@@ -26,8 +26,13 @@ gem 'scarf', '~> 0.2'
 initial_avatar = Scarf::InitialAvatar.new('Hello World')
 initial_avatar.svg
 
-# Customize the font - defaults to sans-serif
+# Customize the font family - defaults to sans-serif
 Scarf::InitialAvatar.new('Jane Doe', font_family: ['Source Sans Pro']).svg
+
+# Configure the font family at class level.
+Scarf.configure do |config|
+  config.font_family = ['Times New Roman', 'sans-serif']
+end
 ```
 
 ## Identicon
@@ -54,10 +59,6 @@ print identicon.to_blob
 identicon = Scarf::Identicon.new 'sample', color: 'red'
 identicon.write 'sample_red.svg'
 ```
-
-## TODO
-
-- Add a configure block to set default value for `font_family`
 
 ## Updates
 

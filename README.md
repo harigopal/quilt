@@ -2,6 +2,9 @@
 
 ![sample](http://harigopal.github.io/scarf/sample.png)
 
+[![Build Status](https://travis-ci.org/harigopal/scarf.svg?branch=master)](https://travis-ci.org/harigopal/scarf)
+[![Code Climate](https://codeclimate.com/github/harigopal/scarf/badges/gpa.svg)](https://codeclimate.com/github/harigopal/scarf)
+
 A Ruby library for generating initial avatars and identicons.
 
 Identicon: http://en.wikipedia.org/wiki/Identicon

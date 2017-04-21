@@ -1,3 +1,7 @@
+## 2017-04-21 (v0.2.4)
+
+- Add support for rectangle background shape for initial avatar.
+
 ## 2017-04-21 (v0.2.3)
 
 - Fix: Correctly quote multiple configured fonts.

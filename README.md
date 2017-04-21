@@ -33,10 +33,10 @@ Scarf::InitialAvatar.new(
   background_shape: :rectangle
 ).svg
 
-# Configure the font family at class level.
+# Configure at class level.
 Scarf.configure do |config|
   config.font_family = ['Times New Roman', 'sans-serif']
-  config.font_family = :rectangle
+  config.background_shape = :rectangle
 end
 ```
 

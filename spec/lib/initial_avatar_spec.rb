@@ -19,11 +19,11 @@ describe Scarf::InitialAvatar do
     end
 
     context 'when Scarf is configured with font_family' do
-      before { Scarf.configure { |c| c.font_family = ['Times New Roman'] } }
+      before { Scarf.configure { |c| c.font_family = ['Times New Roman', 'sans-serif'] } }
       after { Scarf.configure { |c| c.font_family = %w(sans-serif) } }
 
       it 'returns an SVG with configured font in it' do
-        expect(subject.svg).to match(/<svg.+'Times New Roman'.+HW.+<\/svg>/)
+        expect(subject.svg).to match(/<svg.+'Times New Roman', sans-serif.+HW.+<\/svg>/)
       end
     end
   end

@@ -1,3 +1,7 @@
+## 2017-04-21 (v0.2.3)
+
+- Fix: Correctly quote multiple configured fonts.
+
 ## 2017-04-20 (v0.2.2)
 
 - Allow font family to be configured at class level.

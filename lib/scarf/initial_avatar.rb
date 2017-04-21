@@ -21,9 +21,11 @@ module Scarf
     # Surround the font name with single quotes if there's a space in the name, and isn't quoted already.
     def quoted_fonts
       quoted_fonts = @font_family.map do |font|
-        return font unless font.include?(' ')
-        return font if font[0] == "'"
-        "'#{font}'"
+        if font.include?(' ') && font[0] != "'"
+          "'#{font}'"
+        else
+          font
+        end
       end
 
       quoted_fonts.join(', ')

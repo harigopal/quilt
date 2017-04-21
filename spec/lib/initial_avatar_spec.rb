@@ -28,7 +28,7 @@ describe Scarf::InitialAvatar do
     end
 
     context 'when passed a different background shape' do
-      subject { described_class.new(name, background_shape: :rectangle) }
+      subject { described_class.new(name, background_shape: :square) }
 
       it 'returns an SVG with custom font' do
         expect(subject.svg).to match(/<svg.+<rect.+HW.+<\/svg>/)

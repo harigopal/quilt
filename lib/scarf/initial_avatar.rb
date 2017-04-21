@@ -21,7 +21,7 @@ module Scarf
 
     def background
       case(@background_shape)
-        when :rectangle
+        when :square
           return "<rect width=\"100\" height=\"100\" fill=\"#{background_fill}\" />"
         when :circle
           return "<circle cx=\"50\" cy=\"50\" r=\"50\" fill=\"#{background_fill}\" />"

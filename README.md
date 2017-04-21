@@ -30,13 +30,13 @@ initial_avatar.svg
 Scarf::InitialAvatar.new(
   'Jane Doe',
   font_family: ['Source Sans Pro'],
-  background_shape: :rectangle
+  background_shape: :square
 ).svg
 
 # Configure at class level.
 Scarf.configure do |config|
   config.font_family = ['Times New Roman', 'sans-serif']
-  config.background_shape = :rectangle
+  config.background_shape = :square
 end
 ```
 

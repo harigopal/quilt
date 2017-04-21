@@ -10,11 +10,11 @@ describe Scarf do
 
       subject.configure do |config|
         config.font_family = ['Source Sans Pro']
-        config.background_shape = :rectangle
+        config.background_shape = :square
       end
 
       expect(subject.configuration.font_family).to eq(['Source Sans Pro'])
-      expect(subject.configuration.background_shape).to eq(:rectangle)
+      expect(subject.configuration.background_shape).to eq(:square)
     end
   end
 end

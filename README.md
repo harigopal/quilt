@@ -1,6 +1,6 @@
 # Scarf
 
-![sample](http://harigopal.github.io/scarf/sample.png)
+![sample](http://blog.harigopal.in/scarf/sample.png)
 
 [![Build Status](https://travis-ci.org/harigopal/scarf.svg?branch=master)](https://travis-ci.org/harigopal/scarf)
 [![Code Climate](https://codeclimate.com/github/harigopal/scarf/badges/gpa.svg)](https://codeclimate.com/github/harigopal/scarf)
@@ -26,12 +26,17 @@ gem 'scarf', '~> 0.2'
 initial_avatar = Scarf::InitialAvatar.new('Hello World')
 initial_avatar.svg
 
-# Customize the font family - defaults to sans-serif
-Scarf::InitialAvatar.new('Jane Doe', font_family: ['Source Sans Pro']).svg
+# Customize the font family - defaults to sans-serif, and the background shape - defaults to :circle.
+Scarf::InitialAvatar.new(
+  'Jane Doe',
+  font_family: ['Source Sans Pro'],
+  background_shape: :rectangle
+).svg
 
 # Configure the font family at class level.
 Scarf.configure do |config|
   config.font_family = ['Times New Roman', 'sans-serif']
+  config.font_family = :rectangle
 end
 ```
 

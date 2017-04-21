@@ -10,7 +10,7 @@ describe Scarf::InitialAvatar do
       expect(subject.svg).to match(/<svg.+sans-serif.+HW.+<\/svg>/)
     end
 
-    context 'when passed a different font' do
+    context 'when passed a different font family' do
       subject { described_class.new(name, font_family: ['Source Sans Pro']) }
 
       it 'returns an SVG with custom font' do
@@ -18,12 +18,20 @@ describe Scarf::InitialAvatar do
       end
     end
 
-    context 'when Scarf is configured with font_family' do
+    context 'when Scarf is configured with font family' do
       before { Scarf.configure { |c| c.font_family = ['Times New Roman', 'sans-serif'] } }
       after { Scarf.configure { |c| c.font_family = %w(sans-serif) } }
 
       it 'returns an SVG with configured font in it' do
         expect(subject.svg).to match(/<svg.+'Times New Roman', sans-serif.+HW.+<\/svg>/)
+      end
+    end
+
+    context 'when passed a different background shape' do
+      subject { described_class.new(name, background_shape: :rectangle) }
+
+      it 'returns an SVG with custom font' do
+        expect(subject.svg).to match(/<svg.+<rect.+HW.+<\/svg>/)
       end
     end
   end

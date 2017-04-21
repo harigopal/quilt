@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    scarf (0.2.3)
+    scarf (0.2.4)
 
 GEM
   remote: https://rubygems.org/

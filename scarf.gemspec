@@ -14,6 +14,7 @@ Gem::Specification.new do |s|
 
   s.description = 'A Ruby library for generating initial avatars and identicons.'
   s.test_files = ['test/test_helper.rb']
+
   s.required_ruby_version = '>= 2.3.0'
 
   s.add_development_dependency 'rake', '~> 12.0'

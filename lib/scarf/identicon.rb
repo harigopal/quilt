@@ -17,56 +17,54 @@ module Scarf
       [10, 2, 12, 10],
       [0, 2, 10, 0],
       [],
-    ]
+    ].freeze
 
-    CENTER_PATCHES = [0, 4, 8, 15]
+    CENTER_PATCHES = [0, 4, 8, 15].freeze
     PATCH_SIZE = 5
 
     attr_reader :code
 
     def initialize(str = '', opt = {})
-      case opt[:type]
+      @code = case opt[:type]
         when :code
-          @code = str.to_i
+          str.to_i
         when :ip
-          @code = Identicon.ip2code str
+          Identicon.ip2code str
         else
-          @code = Identicon.calc_code str.to_s
+          Identicon.calc_code str.to_s
       end
 
       @decode = decode @code
 
-      if opt[:size]
-        @scale = opt[:size].to_f / (PATCH_SIZE * 3)
+      @scale = if opt[:size]
+        opt[:size].to_f / (PATCH_SIZE * 3)
       else
-        @scale = opt[:scale] || 1
+        opt[:scale] || 1
       end
 
       @image_lib = ImageSVG
-
-      @transparent = !!opt[:transparent] &&
-        [ImageRmagick, ImageSVG].include?(@image_lib)
+      @transparent = opt[:transparent]
       @patch_width = PATCH_SIZE * @scale
-      @image = @image_lib.new(@patch_width * 3, @patch_width * 3,
-        :transparent => @transparent)
+      @image = @image_lib.new(@patch_width * 3, @patch_width * 3, transparent: @transparent)
       @back_color = @image.color 255, 255, 255
       @fore_color = opt[:color] || @image.color(@decode[:red], @decode[:green], @decode[:blue])
+
       render
     end
 
     def decode(code)
       {
-        :center_type => (code & 0x3),
-        :center_invert => (((code >> 2) & 0x01) != 0),
-        :corner_type => ((code >> 3) & 0x0f),
-        :corner_invert => (((code >> 7) & 0x01) != 0),
-        :corner_turn => ((code >> 8) & 0x03),
-        :side_type => ((code >> 10) & 0x0f),
-        :side_invert => (((code >> 14) & 0x01) != 0),
-        :side_turn => ((code >> 15) & 0x03),
-        :red => (((code >> 16) & 0x01f) << 3),
-        :green => (((code >> 21) & 0x01f) << 3),
-        :blue => (((code >> 27) & 0x01f) << 3),
+        center_type: (code & 0x3),
+        center_invert: (((code >> 2) & 0x01) != 0),
+        corner_type: ((code >> 3) & 0x0f),
+        corner_invert: (((code >> 7) & 0x01) != 0),
+        corner_turn: ((code >> 8) & 0x03),
+        side_type: ((code >> 10) & 0x0f),
+        side_invert: (((code >> 14) & 0x01) != 0),
+        side_turn: ((code >> 15) & 0x03),
+        red: (((code >> 16) & 0x01f) << 3),
+        green: (((code >> 21) & 0x01f) << 3),
+        blue: (((code >> 27) & 0x01f) << 3),
       }
     end
 
@@ -103,11 +101,13 @@ module Scarf
         fore, back = @fore_color, @back_color
       end
 
-      offset = (@image_lib == Scarf::ImageSVG) ? 0 : 1
+      offset = @image_lib == Scarf::ImageSVG ? 0 : 1
 
-      if !(@transparent && back == @back_color)
-        @image.fill_rect(x, y, x + @patch_width - offset,
-          y + @patch_width - offset, back)
+      unless @transparent && back == @back_color
+        @image.fill_rect(
+          x, y, x + @patch_width - offset,
+          y + @patch_width - offset, back
+        )
       end
 
       points = []
@@ -162,15 +162,14 @@ module Scarf
     end
 
     def self.extract_code(list)
-      if list.respond_to?(:getbyte)
-        tmp = [list.getbyte(0) << 24, list.getbyte(1) << 16,
-          list.getbyte(2) << 8, list.getbyte(3)]
+      tmp = if list.respond_to?(:getbyte)
+        [list.getbyte(0) << 24, list.getbyte(1) << 16, list.getbyte(2) << 8, list.getbyte(3)]
       else
-        tmp = [list[0].to_i << 24, list[1].to_i << 16,
-          list[2].to_i << 8, list[3].to_i]
+        [list[0].to_i << 24, list[1].to_i << 16, list[2].to_i << 8, list[3].to_i]
       end
+
       tmp.inject(0) do |r, i|
-        r | ((i[31] == 1) ? -(i & 0x7fffffff) : i)
+        r | (i[31] == 1 ? -(i & 0x7fffffff) : i)
       end
     end
   end

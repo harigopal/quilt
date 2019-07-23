@@ -1,3 +1,6 @@
 *~
 /example
 *.gem
+
+# Ignore IDE-specific files.
+/.idea

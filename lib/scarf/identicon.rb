@@ -73,18 +73,14 @@ module Scarf
       side = [[1, 0], [2, 1], [1, 2], [0, 1]]
       corner = [[0, 0], [2, 0], [2, 2], [0, 2]]
 
-      draw_patches(center, CENTER_PATCHES[@decode[:center_type]],
-        0, @decode[:center_invert])
-      draw_patches(side, @decode[:side_type],
-        @decode[:side_turn], @decode[:side_invert])
-      draw_patches(corner, @decode[:corner_type],
-        @decode[:corner_turn], @decode[:corner_invert])
+      draw_patches(center, CENTER_PATCHES[@decode[:center_type]], 0, @decode[:center_invert])
+      draw_patches(side, @decode[:side_type], @decode[:side_turn], @decode[:side_invert])
+      draw_patches(corner, @decode[:corner_type], @decode[:corner_turn], @decode[:corner_invert])
     end
 
     def draw_patches(list, patch, turn, invert)
       list.each do |i|
-        draw(:x => i[0], :y => i[1], :patch => patch,
-          :turn => turn, :invert => invert)
+        draw(x: i[0], y: i[1], patch: patch, turn: turn, invert: invert)
         turn += 1
       end
     end
@@ -95,10 +91,10 @@ module Scarf
       patch = opt[:patch] % PATCHES.size
       turn = opt[:turn] % 4
 
-      if opt[:invert]
-        fore, back = @back_color, @fore_color
+      fore, back = if opt[:invert]
+        [@back_color, @fore_color]
       else
-        fore, back = @fore_color, @back_color
+        [@fore_color, @back_color]
       end
 
       offset = @image_lib == Scarf::ImageSVG ? 0 : 1
@@ -110,24 +106,7 @@ module Scarf
         )
       end
 
-      points = []
-      PATCHES[patch].each do |pt|
-        dx = pt % PATCH_SIZE
-        dy = pt / PATCH_SIZE
-        len = @patch_width - offset
-        px = dx.to_f / (PATCH_SIZE - 1) * len
-        py = dy.to_f / (PATCH_SIZE - 1) * len
-
-        case turn
-          when 1
-            px, py = len - py, px
-          when 2
-            px, py = len - px, len - py
-          when 3
-            px, py = py, len - px
-        end
-        points << [x + px, y + py]
-      end
+      points = compute_points(offset, patch, turn, x, y)
 
       if @transparent
         if fore == @back_color
@@ -170,6 +149,31 @@ module Scarf
 
       tmp.inject(0) do |r, i|
         r | (i[31] == 1 ? -(i & 0x7fffffff) : i)
+      end
+    end
+
+    private
+
+    def compute_points(offset, patch, turn, x, y)
+      PATCHES[patch].map do |pt|
+        dx = pt % PATCH_SIZE
+        dy = pt / PATCH_SIZE
+        len = @patch_width - offset
+        px = dx.to_f / (PATCH_SIZE - 1) * len
+        py = dy.to_f / (PATCH_SIZE - 1) * len
+
+        px, py = case turn
+          when 1
+            [len - py, px]
+          when 2
+            [len - px, len - py]
+          when 3
+            [py, len - px]
+          else
+            [px, py]
+        end
+
+        [x + px, y + py]
       end
     end
   end

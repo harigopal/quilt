@@ -1,0 +1,9 @@
+# Project styling
+
+Layout/CaseIndentation:
+  EnforcedStyle: end
+  IndentOneStep: true
+Layout/EndAlignment:
+  EnforcedStyleAlignWith: variable
+Metrics/LineLength:
+  Max: 150

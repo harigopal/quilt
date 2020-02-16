@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Scarf Demo</title>
+  <style>
+    .container {
+      height: 40px;
+      width: 40px;
+      border: 1px solid black;
+    }
+
+    .container--rounded {
+      border-radius: 40px;
+    }
+
+    .mt-10 {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+<div class="container container--rounded"><%= @avatars[:round] %></div>
+<div class="mt-10 container"><%= @avatars[:square] %></div>
+<div class="mt-10 container"><%= @avatars[:identicon] %></div>
+</body>
+
+</html>

@@ -19,6 +19,10 @@ Add to Gemfile:
 gem 'scarf', '~> 0.2'
 ```
 
+## Demo
+
+Check out the Sinatra app in the `/demo` folder to see the gem in action.
+
 ## Initial Avatar
 
 ```ruby

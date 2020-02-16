@@ -17,7 +17,8 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>= 2.3.0'
 
-  s.add_development_dependency 'rake', '~> 12.0'
+  s.add_development_dependency 'rake', '~> 13.0'
   s.add_development_dependency 'test-unit', '~> 3.1'
   s.add_development_dependency 'rspec', '~> 3.5'
+  s.add_development_dependency 'sinatra', '~> 2.0'
 end

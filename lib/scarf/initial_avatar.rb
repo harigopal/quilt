@@ -12,7 +12,7 @@ module Scarf
       <<~WRAPPER.gsub(/$\s+/, '').strip
         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100">
           #{background}
-          <text fill="#{foreground_fill}" font-size="50" font-family="#{quoted_fonts}" x="50" y="50" text-anchor="middle" alignment-baseline="central">#{initials}</text>
+          <text fill="#{foreground_fill}" font-size="42" font-family="#{quoted_fonts}" x="50" y="54" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle">#{initials}</text>
         </svg>
       WRAPPER
     end

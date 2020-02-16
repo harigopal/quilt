@@ -1,3 +1,7 @@
+## 2020-02-16 (v0.2.6)
+
+- Fix issues with centering of text in initial avatars on Firefox.
+
 ## 2017-04-21 (v0.2.5)
 
 - Background shape is square, not rectangle. Doh!

@@ -7,6 +7,7 @@ describe Scarf do
     it 'stores configuration' do
       expect(subject.configuration.font_family).to eq(%w(sans-serif))
       expect(subject.configuration.font_weight).to eq('normal')
+      expect(subject.configuration.font_size).to eq('42')
       expect(subject.configuration.background_shape).to eq(:circle)
       expect(subject.configuration.background_colors).to eq(described_class::Configuration::BACKGROUND)
 
@@ -15,10 +16,12 @@ describe Scarf do
         config.background_shape = :square
         config.background_colors = ['#FFFFFF', '#000000']
         config.font_weight = 'bolder'
+        config.font_size = 'smaller'
       end
 
       expect(subject.configuration.font_family).to eq(['Source Sans Pro'])
       expect(subject.configuration.font_weight).to eq('bolder')
+      expect(subject.configuration.font_size).to eq('smaller')
       expect(subject.configuration.background_shape).to eq(:square)
       expect(subject.configuration.background_colors).to eq(['#FFFFFF', '#000000'])
 

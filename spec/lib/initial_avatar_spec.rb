@@ -50,5 +50,13 @@ describe Scarf::InitialAvatar do
         expect(subject.svg).to match(/bolder/)
       end
     end
+
+    context 'when passed a different font-size' do
+      subject { described_class.new(name, font_size: ['smaller']) }
+
+      it 'uses the specified font-size' do
+        expect(subject.svg).to match(/smaller/)
+      end
+    end
   end
 end

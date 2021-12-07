@@ -1,9 +1,10 @@
 module Scarf
   class InitialAvatar
-    def initialize(name, font_family: [], font_weight: nil, background_shape: nil, background_colors: [])
+    def initialize(name, font_family: [], font_weight: nil, font_size: nil, background_shape: nil, background_colors: [])
       @name = name
       @font_family = font_family.length.zero? ? Scarf.configuration.font_family : font_family
       @font_weight = font_weight.nil? ? Scarf.configuration.font_weight : font_weight
+      @font_size = font_size.nil? ? Scarf.configuration.font_size : font_size
       @background_shape = background_shape.nil? ? Scarf.configuration.background_shape : background_shape
       @background_colors = background_colors.length.zero? ? Scarf.configuration.background_colors : background_colors
     end
@@ -12,7 +13,7 @@ module Scarf
       <<~WRAPPER.gsub(/$\s+/, '').strip
         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100">
           #{background}
-          <text fill="#{foreground_fill}" font-size="42" font-weight="#{@font_weight}" font-family="#{quoted_fonts}" x="50" y="54" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle">#{initials}</text>
+          <text fill="#{foreground_fill}" font-size="#{@font_size}" font-weight="#{@font_weight}" font-family="#{quoted_fonts}" x="50" y="54" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle">#{initials}</text>
         </svg>
       WRAPPER
     end

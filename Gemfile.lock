@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    scarf (0.2.5)
+    scarf (0.2.6)
 
 GEM
   remote: https://rubygems.org/
@@ -48,4 +48,4 @@ DEPENDENCIES
   test-unit (~> 3.1)
 
 BUNDLED WITH
-   2.1.2
+   2.2.32

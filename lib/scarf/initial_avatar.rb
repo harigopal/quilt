@@ -1,18 +1,18 @@
 module Scarf
   class InitialAvatar
-    def initialize(name, font_family: [], background_shape: nil)
+    def initialize(name, font_family: [], font_weight: nil, background_shape: nil, background_colors: [])
       @name = name
       @font_family = font_family.length.zero? ? Scarf.configuration.font_family : font_family
+      @font_weight = font_weight.nil? ? Scarf.configuration.font_weight : font_weight
       @background_shape = background_shape.nil? ? Scarf.configuration.background_shape : background_shape
+      @background_colors = background_colors.length.zero? ? Scarf.configuration.background_colors : background_colors
     end
-
-    BACKGROUND = %w(#ff4040 #7f2020 #cc5c33 #734939 #bf9c8f #995200 #4c2900 #f2a200 #ffd580 #332b1a #4c3d00 #ffee00 #b0b386 #64664d #6c8020 #c3d96c #143300 #19bf00 #53a669 #bfffd9 #40ffbf #1a332e #00b3a7 #165955 #00b8e6 #69818c #005ce6 #6086bf #000e66 #202440 #393973 #4700b3 #2b0d33 #aa86b3 #ee00ff #bf60b9 #4d3949 #ff00aa #7f0044 #f20061 #330007 #d96c7b).freeze
 
     def svg
       <<~WRAPPER.gsub(/$\s+/, '').strip
         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100">
           #{background}
-          <text fill="#{foreground_fill}" font-size="42" font-family="#{quoted_fonts}" x="50" y="54" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle">#{initials}</text>
+          <text fill="#{foreground_fill}" font-size="42" font-weight="#{@font_weight}" font-family="#{quoted_fonts}" x="50" y="54" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle">#{initials}</text>
         </svg>
       WRAPPER
     end
@@ -47,8 +47,8 @@ module Scarf
     def background_fill
       @background_fill ||= begin
         digest = "0.#{Digest::MD5.hexdigest(@name).to_i(16).to_s}".to_f
-        index = (digest * (BACKGROUND.length - 1)).round
-        BACKGROUND[index]
+        index = (digest * (@background_colors.length - 1)).round
+        @background_colors[index]
       end
     end
 

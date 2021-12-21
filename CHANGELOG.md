@@ -1,3 +1,7 @@
+## 2021-12-21 (v0.3.0)
+
+- [PR #1](https://github.com/harigopal/scarf/pull/1): [Clayton](https://github.com/clayton) made the font-size,font-weight, and the available background colors customizable.
+
 ## 2020-02-16 (v0.2.6)
 
 - Fix issues with centering of text in initial avatars on Firefox.

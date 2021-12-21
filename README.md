@@ -40,9 +40,21 @@ Scarf::InitialAvatar.new(
 # Configure at class level.
 Scarf.configure do |config|
   config.font_family = ['Times New Roman', 'sans-serif']
+  config.font_weight = 'normal'
+  config.font_size = '64'
   config.background_shape = :square
+  config.background_colors = ['#000000', '#999999']
 end
 ```
+
+### Options
+| Name                | Type   | Default                  | Description                                                                                            |
+| :------------------ | :----- | :----------------------- | :----------------------------------------------------------------------------------------------------- |
+| `font_family`       | Array  | `['sans-serif']`         | A list of font families.                                                                                |
+| `font_weight`       | String | `normal`                 | Uses [SVG font-weight](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/font-weight) values. |
+| `font_size`         | String | `42`                     | Uses [CSS font-size](https://developer.mozilla.org/en-US/docs/Web/CSS/font-size#values) values.        |
+| `background_shape`  | Symbol | `:circle`                | Shape of the background (`:circle` or `:square`.)                                                      |
+| `background_colors` | Array  | `['#444444', '#dedede']` | A list of hex color codes.                                                                             |
 
 ## Identicon
 

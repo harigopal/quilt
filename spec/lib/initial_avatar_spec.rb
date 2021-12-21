@@ -30,8 +30,32 @@ describe Scarf::InitialAvatar do
     context 'when passed a different background shape' do
       subject { described_class.new(name, background_shape: :square) }
 
-      it 'returns an SVG with custom font' do
+      it 'returns an SVG with that shape' do
         expect(subject.svg).to match(/<svg.+<rect.+HW.+<\/svg>/)
+      end
+    end
+
+    context 'when passed a different list of background colors' do
+      subject { described_class.new(name, background_colors: ['#123456']) }
+
+      it 'uses one of those background colors' do
+        expect(subject.svg).to match(/#123456/)
+      end
+    end
+
+    context 'when passed a different font-weight' do
+      subject { described_class.new(name, font_weight: ['bolder']) }
+
+      it 'uses the specified font-weight' do
+        expect(subject.svg).to match(/bolder/)
+      end
+    end
+
+    context 'when passed a different font-size' do
+      subject { described_class.new(name, font_size: ['smaller']) }
+
+      it 'uses the specified font-size' do
+        expect(subject.svg).to match(/smaller/)
       end
     end
   end

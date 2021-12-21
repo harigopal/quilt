@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.homepage = 'https://github.com/harigopal/scarf'
   s.license = 'MIT'
 
-  s.description = 'A Ruby library for generating initial avatars and identicons. Configurable fonts, colors, and shapes.'
+  s.description = 'A Ruby library for generating initial avatars and identicons, with configurable fonts, colors, and shapes.'
   s.test_files = ['test/test_helper.rb']
 
   s.required_ruby_version = '>= 2.3.0'
